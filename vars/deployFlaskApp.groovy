@@ -1,7 +1,7 @@
-def call(String image, String tag) {
+def call(String dockerImage, String imageTag) {
 
     echo "Starting Flask application deployment"
-    echo "Image: ${image}:${tag}"
+    echo "Image: ${dockerImage}:${imageTag}"
 
     sh """
         docker rm -f flaskapp || true
@@ -9,7 +9,7 @@ def call(String image, String tag) {
         docker run -d \
         --name flaskapp \
         -p 5000:5000 \
-        ${image}:${tag}
+        ${dockerImage}:${imageTag}
     """
 
     echo "Flask application deployed successfully"
